@@ -42,8 +42,8 @@ function HELP {
 HAS_PCAP_IMMEDIATE_MODE=0
 HAS_SET_DIRECTION_ENABLED=0
 
-# initializing libpcap include/lib dirs to an empty string 
-LIBPCAP_INLCUDE_DIR=""
+# initializing libpcap include/lib dirs to an empty string
+LIBPCAP_INCLUDE_DIR=""
 LIBPCAP_LIB_DIR=""
 
 # default installation directory
@@ -79,7 +79,7 @@ case $key in
 
    # non-default libpcap include dir
    --libpcap-include-dir)
-     LIBPCAP_INLCUDE_DIR=$2
+     LIBPCAP_INCLUDE_DIR=$2
      shift
      shift ;;
 
@@ -155,15 +155,15 @@ if (( $HAS_PCAP_IMMEDIATE_MODE > 0 )) ; then
    echo -e "HAS_PCAP_IMMEDIATE_MODE := 1\n\n" >> $PCAPPLUSPLUS_MK
 fi
 
-if (( $HAS_SET_DIRECTION_ENABLED > 0 )) ; then 
+if (( $HAS_SET_DIRECTION_ENABLED > 0 )) ; then
    echo -e "HAS_SET_DIRECTION_ENABLED := 1\n\n" >> $PCAPPLUSPLUS_MK
-fi 
+fi
 
 # non-default libpcap include dir
-if [ -n "$LIBPCAP_INLCUDE_DIR" ]; then
+if [ -n "$LIBPCAP_INCLUDE_DIR" ]; then
    echo -e "# non-default libpcap include dir" >> $PCAPPLUSPLUS_MK
-   echo -e "LIBPCAP_INLCUDE_DIR := $LIBPCAP_INLCUDE_DIR" >> $PCAPPLUSPLUS_MK
-   echo -e "PCAPPP_INCLUDES += -I\$(LIBPCAP_INLCUDE_DIR)\n" >> $PCAPPLUSPLUS_MK
+   echo -e "LIBPCAP_INCLUDE_DIR := $LIBPCAP_INCLUDE_DIR" >> $PCAPPLUSPLUS_MK
+   echo -e "PCAPPP_INCLUDES += -I\$(LIBPCAP_INCLUDE_DIR)\n" >> $PCAPPLUSPLUS_MK
 fi
 
 # non-default libpcap lib dir

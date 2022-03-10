@@ -367,7 +367,7 @@ PTF_TEST_CASE(TestDpdkMultiThread)
 	if (dev->getTotalNumOfRxQueues() < numOfRxQueuesToOpen)
 		numOfRxQueuesToOpen = dev->getTotalNumOfRxQueues();
 
-	// verfiy num of RX queues is power of 2 due to DPDK limitation
+	// verify num of RX queues is power of 2 due to DPDK limitation
 	bool isRxQueuePowerOfTwo = !(numOfRxQueuesToOpen == 0) && !(numOfRxQueuesToOpen & (numOfRxQueuesToOpen - 1));
 	while (!isRxQueuePowerOfTwo)
 	{
@@ -627,7 +627,7 @@ PTF_TEST_CASE(TestDpdkDeviceWorkerThreads)
 	pcpp::Logger::getInstance().enableLogs();
 	dev->stopCapture();
 	dev->close();
-	
+
 	PTF_ASSERT_TRUE(dev->openMultiQueues(dev->getTotalNumOfRxQueues(), dev->getTotalNumOfTxQueues()));
 
 	// receive packets to packet vector
@@ -950,7 +950,7 @@ PTF_TEST_CASE(TestDpdkMbufRawPacket)
 	int initialRawPacketLen = rawPacketToManipulate->getRawDataLen();
 	pcpp::Packet packetToManipulate(rawPacketToManipulate);
 	pcpp::IPv4Layer* ipLayer = packetToManipulate.getLayerOfType<pcpp::IPv4Layer>();
-	
+
 	// remove all layers above IP
 	PTF_ASSERT_TRUE(packetToManipulate.removeAllLayersAfter(ipLayer));
 
